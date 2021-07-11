@@ -1,6 +1,6 @@
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
-# direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
+direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
 text = input("Type your message:\n").lower()
 shift = int(input("Type the shift number:\n"))
 
@@ -8,6 +8,9 @@ def split(word):
     return [char for char in word]
 
 def encrypt():
+    global shift
+    if(direction == 'decode'):
+        shift = 0-shift
     word = split(text)
     for i in range(len(text)):
         index_to_change = alphabet.index(word[i])
