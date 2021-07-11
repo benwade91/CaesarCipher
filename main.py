@@ -1,22 +1,36 @@
-alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ']
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+symbols = [" ", "'", ",", "!", "?", "@", "$"]
 
-direction = input("Type '1' to encrypt, type '2' to decrypt:\n")
-text = input("Type your message:\n").lower()
-shift = int(input("Type the shift number:\n"))
+def start():
+    direction = input("Type '1' to encrypt, type '2' to decrypt:\n")
+    text = raw_input("Type your message:\n").lower()
+    shift = int(input("Type the shift number:\n"))
+    
+    encrypt(shift, direction, text)
+    prompt()
+
 
 def split(word):
     return [char for char in word]
 
-def encrypt(shift):
+def encrypt(shift, direction, text):
     if(direction == 2):
-        shift = 0-shift
-    word = split(text)
+        shift *= -1
+
+    letter_arr = split(text)
     for i in range(len(text)):
-        index_to_change = alphabet.index(word[i]) + shift
-        if(index_to_change > 26):
-            index_to_change -= 27
-        elif(index_to_change < 0):
-            index_to_change += 27
-        word[i] = alphabet[index_to_change]
-    print(''.join(word))
-encrypt(shift)
+        if text[i] not in symbols:
+            index_to_change = alphabet.index(letter_arr[i]) + shift
+            if(index_to_change > 25):
+                index_to_change -= 26
+            elif(index_to_change < 0):
+                index_to_change += 26
+            letter_arr[i] = alphabet[index_to_change]
+    print(''.join(letter_arr))
+
+def prompt():
+    again = str(raw_input("Would you like to keep encrypting? 'yes' or 'no'?\n").lower())
+    if again == 'yes':
+        start()
+
+start()
