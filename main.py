@@ -1,5 +1,4 @@
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-symbols = [" ", "'", ",", "!", "?", "@", "$"]
 
 def start():
     direction = input("Type '1' to encrypt, type '2' to decrypt:\n")
@@ -21,7 +20,7 @@ def encrypt(shift, direction, text):
 
     letter_arr = split(text)
     for i in range(len(text)):
-        if text[i] not in symbols:
+        if text[i] in alphabet:
             index_to_change = alphabet.index(letter_arr[i]) + shift
             if(index_to_change > 25):
                 index_to_change -= 26
