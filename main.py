@@ -14,6 +14,8 @@ def split(word):
     return [char for char in word]
 
 def encrypt(shift, direction, text):
+    if shift > 25:
+        shift = shift % 25
     if(direction == 2):
         shift *= -1
 
